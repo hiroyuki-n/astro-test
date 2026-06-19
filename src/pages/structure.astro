@@ -1,0 +1,94 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Astroのディレクトリ構成">
+	<main>
+		<h1>Astroのディレクトリ構成</h1>
+		<p>このプロジェクトの基本的なフォルダ構成と、それぞれの役割のメモです。</p>
+
+		<section class="memo">
+			<h2>全体像</h2>
+			<pre><code>astro-test/
+├─ public/            静的ファイル（そのまま配信される）
+│   ├─ favicon.svg
+│   └─ favicon.ico
+├─ src/               ソースコード（ここを編集する）
+│   ├─ assets/        画像など（ビルドで最適化される）
+│   ├─ components/    再利用パーツ（Nav など）
+│   ├─ layouts/       共通レイアウト（ページの枠）
+│   └─ pages/         ページ（ファイル＝URLになる）
+├─ astro.config.mjs   Astroの設定ファイル
+├─ package.json       依存パッケージ・コマンド定義
+├─ tsconfig.json      TypeScriptの設定
+└─ dist/              ビルド結果（npm run build で生成）</code></pre>
+		</section>
+
+		<section class="memo">
+			<h2>各フォルダの役割</h2>
+			<ul>
+				<li><code>src/pages/</code> … 最重要。<strong>ファイル名がそのままURL</strong>になる（ファイルベースルーティング）。</li>
+				<li><code>src/layouts/</code> … 全ページ共通の枠（HTMLの head やナビなど）。</li>
+				<li><code>src/components/</code> … ボタンやナビなど再利用する部品。</li>
+				<li><code>src/assets/</code> … 画像など。ビルド時に最適化される。</li>
+				<li><code>public/</code> … 加工せずそのまま配信したいファイル（favicon など）。</li>
+				<li><code>dist/</code> … <code>npm run build</code> で生成される公開用ファイル。Cloudflareはこれを配信。</li>
+			</ul>
+		</section>
+
+		<section class="memo">
+			<h2>ファイルベースルーティングの例</h2>
+			<ul>
+				<li><code>src/pages/index.astro</code> → <code>/</code></li>
+				<li><code>src/pages/structure.astro</code> → <code>/structure</code>（このページ）</li>
+				<li><code>src/pages/about.astro</code> → <code>/about</code></li>
+				<li><code>src/pages/blog/first.astro</code> → <code>/blog/first</code></li>
+			</ul>
+			<p>つまり、<code>pages/</code> にファイルを置くだけで新しいページが増えます。</p>
+		</section>
+	</main>
+</Layout>
+
+<style>
+	main {
+		max-width: 640px;
+		margin: 0 auto;
+		padding: 4rem 1.5rem;
+		font-family: system-ui, sans-serif;
+		line-height: 1.7;
+	}
+	h1 {
+		font-size: 2rem;
+		margin-bottom: 1rem;
+	}
+	.memo {
+		margin-top: 2.5rem;
+		padding: 1.5rem;
+		border: 1px solid #ddd;
+		border-radius: 8px;
+		background: #fafafa;
+	}
+	.memo h2 {
+		font-size: 1.25rem;
+		margin-top: 0;
+	}
+	.memo code {
+		background: #eee;
+		padding: 0.1em 0.35em;
+		border-radius: 4px;
+		font-size: 0.9em;
+	}
+	.memo pre {
+		background: #1e1e1e;
+		color: #f0f0f0;
+		padding: 0.75rem 1rem;
+		border-radius: 6px;
+		overflow-x: auto;
+		line-height: 1.5;
+	}
+	.memo pre code {
+		background: none;
+		padding: 0;
+		color: inherit;
+	}
+</style>

@@ -7,6 +7,32 @@ import Layout from '../layouts/Layout.astro';
 		<h1>ダミーサイト</h1>
 		<p>これはテスト用のダミーテキストです。</p>
 		<p>git push から Cloudflare 自動デプロイまでの流れを確認しています。</p>
+
+		<section class="memo">
+			<h2>メモ: astro-dev-toolbar について</h2>
+
+			<h3>役割</h3>
+			<ul>
+				<li>開発中（<code>npm run dev</code>）だけ画面下に出る開発者用ツールバー。</li>
+				<li>本番（ビルド後）には出ないので、公開サイトには影響しない。</li>
+				<li>機能例: ページ情報の確認、アクセシビリティ監査、インストール済みインテグレーションの確認など、開発補助用。</li>
+			</ul>
+
+			<h3>非表示にする方法</h3>
+			<ol>
+				<li>
+					プロジェクト全体で無効化: <code>astro.config.mjs</code> に追記
+					<pre><code>export default defineConfig(&#123;
+  devToolbar: &#123; enabled: false &#125;,
+&#125;);</code></pre>
+				</li>
+				<li>
+					自分の環境だけ無効化（設定ファイルに影響しない）:
+					<pre><code>npx astro preferences disable devToolbar</code></pre>
+					元に戻す: <code>npx astro preferences enable devToolbar</code>
+				</li>
+			</ol>
+		</section>
 	</main>
 </Layout>
 
@@ -21,5 +47,38 @@ import Layout from '../layouts/Layout.astro';
 	h1 {
 		font-size: 2rem;
 		margin-bottom: 1rem;
+	}
+	.memo {
+		margin-top: 2.5rem;
+		padding: 1.5rem;
+		border: 1px solid #ddd;
+		border-radius: 8px;
+		background: #fafafa;
+	}
+	.memo h2 {
+		font-size: 1.25rem;
+		margin-top: 0;
+	}
+	.memo h3 {
+		font-size: 1rem;
+		margin-bottom: 0.25rem;
+	}
+	.memo code {
+		background: #eee;
+		padding: 0.1em 0.35em;
+		border-radius: 4px;
+		font-size: 0.9em;
+	}
+	.memo pre {
+		background: #1e1e1e;
+		color: #f0f0f0;
+		padding: 0.75rem 1rem;
+		border-radius: 6px;
+		overflow-x: auto;
+	}
+	.memo pre code {
+		background: none;
+		padding: 0;
+		color: inherit;
 	}
 </style>
