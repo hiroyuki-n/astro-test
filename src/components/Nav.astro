@@ -8,7 +8,7 @@ const isActive = (href: string) =>
 	href === '/' ? path === '/' : path.startsWith(href);
 ---
 
-<nav>
+<nav class="site-nav">
 	<ul>
 		{links.map((link) => (
 			<li>
@@ -19,34 +19,3 @@ const isActive = (href: string) =>
 		))}
 	</ul>
 </nav>
-
-<style>
-	nav {
-		border-bottom: 1px solid #ddd;
-		background: #fff;
-	}
-	ul {
-		display: flex;
-		gap: 0.5rem;
-		max-width: 640px;
-		margin: 0 auto;
-		padding: 0.75rem 1.5rem;
-		list-style: none;
-	}
-	a {
-		display: inline-block;
-		padding: 0.4rem 0.8rem;
-		border-radius: 6px;
-		text-decoration: none;
-		color: #333;
-		font-family: system-ui, sans-serif;
-		font-size: 0.95rem;
-	}
-	a:hover {
-		background: #f0f0f0;
-	}
-	a.active {
-		background: #1e1e1e;
-		color: #fff;
-	}
-</style>
